@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from Console.package import Functions
 
-f = Functions()
+wd = WarpDrive()
 
 # Get DataFrame and columns
-df = f.get_args("df")
-columns = f.get_args("columns")
+df = wd.get_args("df")
+columns = wd.get_args("columns")
 
 # Extract individual column names from the string
 column_names = [col.strip() for col in columns.split(",")]
@@ -46,12 +46,12 @@ for i, col in enumerate(column_names):
     # Display standardized data
     standardized_data = pd.DataFrame({f'{col}_standardized': scaler.fit_transform(df[col].values.reshape(-1, 1)).flatten()})
 
-    f.save_table(standardized_data)
-    f.save_table(df)
+    wd.save_table(standardized_data)
+    wd.save_table(df)
 
 # Adjust layout
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Show the plots
 
-f.save_image(plt)
+wd.save_image(plt)
